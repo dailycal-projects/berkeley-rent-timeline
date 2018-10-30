@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <script src="http://d3js.org/d3.v4.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+  <div id="sticky">
+  </div>
+  <div id="container" style="height: 100vh; overflow: scroll">
+    <div id="content">
+      <div class="panel">
+        <h1> *creative title here* </h1>
+        <h2> A Comprehensive Timeline of Berkeley Rent Prices and Legislation, From 1979 to Today </h4>
+        <h5> The x- and y-axes of this graph denote years and median rent prices, respectively. The data was collected from City of Berkeley <a href="https://www.cityofberkeley.info/rent/reports/" target="_blank" style="color:#1960a8">economic data and historical reports</a>, and does not take inflation into consideration. </h5>
+        <h3> Scroll to begin. </h3>
+      </div>
+      <div class="panel">
+        <p> During World War II, rent controls, imposed by the federal government, are applied in Berkeley for the first time. They expire in August 1951, after a resolution stating that rental shortages no longer exist.
+      </div>
+      <div class="panel">
+        <h3> 1971 </h3>
+        <h4> AUGUST </h4>
+        <p> President Nixon institutes temporary national wage and price controls, which include a freeze on rent increases. </p>
+      </div>
+      <div class="panel">
+        <h3> 1972 </h3>
+        <h4> JUNE </h4>
+        <p> The Rent Control Charter Amendment, an initiative measure to continue the rent freeze, is placed on the ballot and passes. </p>
+      </div>
+      <div class="panel">
+        <h3> 1973 </h3>
+        <h4> JANUARY </h4>
+        <p> The price controls instituted by the federal government end. </p>
+        <h4> MAY </h4>
+        <p> In <i> Birkenfeld v. the City of Berkeley </i>, Alameda County Superior Court Judge Robert Bostick rules the Rent Control Charter Amendment as unconstitutional. </p>
+      </div>
+      <div class="panel">
+        <!-- year: 1974 -->
+      </div>
+      <div class="panel">
+        <!-- year: 1975 -->
+      </div>
+      <div class="panel">
+        <h3> 1976 </h3>
+        <h4> JUNE </h4>
+        <p> The California Supreme Court, which agrees to take the case, unanimously overturns the 1972 rent control measure but supports the legality of local rent control. </p>
+      </div>
+      <div class="panel">
+        <!-- year: 1977 -->
+      </div>
+      <div class="panel">
+        <h3> 1978 </h3>
+        <h4> JUNE </h4>
+        <p> California voters pass Proposition 13, an initiative measure that amends the state constitution to reduce property taxes and limit future property tax increases. </p>
+        <h4> NOVEMBER </h4>
+        <p> Berkeley voters pass the Renter Property Tax Relief Ordinance, which temporarily reduces rents to provide renters a property tax rebate. The ordinance is “self-enforcing”, meaning that tenants are expected to enforce it if it is violated by a landlord. This leads to *widespread* non-compliance. </p>
+      </div>
+      <div class="panel">
+        <!-- year: 1979 -->
+      </div>
+      <div class="panel">
+        <h3> 1980 </h3>
+        <h4> JUNE </h4>
+        <p> Berkeley voters pass the Rent Stabilization and Eviction for Good Cause Ordinance (now <a href="https://www.codepublishing.com/CA/Berkeley/?Berkeley13/Berkeley1376/Berkeley1376.html&?f" target="_blank" style="color:#1960a8"> Berkeley Municipal Code Chapter 13.76</a>), the basic framework of Berkeley rent control. A base rent is established as the lawful rent. The first Berkeley Rent Stabilization Board sets annual across-the-board rent increases, called the <a href="https://www.cityofberkeley.info/rent/AGA.aspx" target="_blank" style="color:#1960a8"> Annual General Adjustment (AGA)</a>, to account for increases in operating costs. </p>
+      </div>
+      <div class="panel">
+        <p> Berkeley joins Santa Monica as the only California city with strong rent control laws that kept rents under permanent control. (They are later joined by Cotati, Palm Springs, East Palo Alto and West Hollywood.) </p>
+      </div>
+      <div class="panel">
+        <h3> 1981 </h3>
+        <h4> JANUARY </h4>
+        <p> The first Annual General Adjustment takes effect. </p>
+      </div>
+      <div class="panel">
+        <h3> 1982 </h3>
+        <h4> NOVEMBER </h4>
+        <p> An initiative Charter amendment that replaces the appointed Rent Board with an elected <a href="https://www.cityofberkeley.info/Rent_Stabilization_Board/Department_Master_and_Collections/TEMP_-_About_Us_and_Contact_Us/Rent_Board_-_About_Us.aspx" target="_blank" style="color:#1960a8"> Rent Board</a> passes. </p>
+      </div>
+      <div class="panel">
+        <!-- year: 1983 -->
+      </div>
+      <div class="panel">
+        <!-- year: 1984 -->
+      </div>
+      <div class="panel">
+        <!-- year: 1985 -->
+      </div>
+      <div class="panel">
+        <!-- year: 1986 -->
+      </div>
+      <div class="panel">
+        <h4> The <span style="color:#6199e2">blue</span> line denotes median rent, including AGA, and the <span style="color:#e2aa61">orange</span> line denotes median rent after vacancy decontrol.</h4>
+      </div>
+      <div class="panel">
+        <!-- year: 1987 -->
+      </div>
+      <div class="panel">
+        <!-- year: 1988 -->
+      </div>
+      <div class="panel">
+        <!-- year: 1989 -->
+      </div>
+      <div class="panel">
+        <!-- year: 1990 -->
+      </div>
+      <div class="panel">
+        <h3> 1991 </h3>
+        <h4> APRIL </h4>
+        <p> The Rent Board passes <a href="https://www.cityofberkeley.info/Rent_Stabilization_Board/Home/Regulation_1262.aspx" target="_blank" style="color:#1960a8"> Regulation 1262</a>, by which landlords can request that operating income be changed due to unusual circumstances in that year, meaning that they can petition for rent increases.</p>
+        <h4> SEPTEMBER </h4>
+        <p> The Rent Board passes <a href="https://www.cityofberkeley.info/Rent_Stabilization_Board/Home/Regulation_Chapter_11_part_3.aspx#1112" target="_blank"> Regulation 1112</a>, commonly called "the Searle increase", which allows an across-the-board retroactive rent increase averaging 28 percent for all rent controlled units and a 5 percent AGA, for an average total across-the-board rent increase of 33 percent. </p>
+      </div>
+      <div class="panel">
+        <!-- year: 1992 -->
+      </div>
+      <div class="panel">
+        <!-- year: 1993 -->
+      </div>
+      <div class="panel">
+        <h3> 1994 </h3>
+        <p> Major rent increases loosen up the rent control system. Berkeley joins the housing crisis emerging in the Bay Area. </p>
+      </div>
+      <div class="panel">
+        <h3> 1995 </h3>
+        <h4> JUNE </h4>
+        <p> The <a href="https://www.cityofberkeley.info/Rent_Stabilization_Board/Home/California_Civil_Code__Sec_1954_50-1954_535_(Costa-Hawkins).aspx" target="_target" style="color:#1960a8">Costa Hawkins Rental Housing Act</a> prevents rent control from covering any property built after the law passed and mandates “vacancy decontrol”, which allows landlords to raise rents to market rate after a tenant moves out of a rent-controlled unit. It is essentially a statewide-rent control restrictions. </p>
+      </div>
+      <div class="panel">
+        <!-- year: 1996-->
+      </div>
+      <div class="panel">
+        <!-- year: 1997-->
+      </div>
+      <div class="panel">
+        <!-- year: 1998-->
+      </div>
+      <div class="panel">
+        <!-- year: 1999-->
+      </div>
+      <div class="panel">
+        <!-- year: 2000-->
+      </div>
+      <div class="panel">
+        <!-- year: 2001 -->
+      </div>
+      <div class="panel">
+        <!-- year: 2002 -->
+      </div>
+      <div class="panel">
+        <!-- year: 2003 -->
+      </div>
+      <div class="panel">
+        <!-- year: 2004 -->
+      </div>
+      <div class="panel">
+        <!-- year: 2005 -->
+      </div>
+      <div class="panel">
+        <!-- year: 2006 -->
+      </div>
+      <div class="panel">
+        <!-- year: 2007 -->
+      </div>
+      <div class="panel">
+        <!-- year: 2008 -->
+      </div>
+      <div class="panel">
+        <!-- year: 2009 -->
+      </div>
+      <div class="panel">
+        <!-- year: 2010 -->
+      </div>
+      <div class="panel">
+        <!-- year: 2011 -->
+      </div>
+      <div class="panel">
+        <!-- year: 2012 -->
+      </div>
+      <div class="panel">
+        <!-- year: 2013 -->
+      </div>
+      <div class="panel">
+        <!-- year: 2014 -->
+      </div>
+      <div class="panel">
+        <!-- year: 2015 -->
+      </div>
+      <div class="panel">
+        <!-- year: 2016 -->
+      </div>
+      <div class="panel">
+        <!-- year: 2017 -->
+      </div>
+      <div class="panel">
+        <h3> 2018 </h3>
+        <h4> NOVEMBER </h4>
+        <p> Proposition 10, if passed, will repeal Costa Hawkins. 
+        If local <a href="https://www.cityofberkeley.info/uploadedFiles/Clerk/Elections/Rent%20Ordinance%20-%20All_Ballot%20Question%20and%20Full%20Text.pdf" target="_blank" style="color:#1960a8"> Measure Q </a> (Amendments to the Rent Stabilization and Eviction for Good Cause Ordination) passes, the original Rent Stabilization Ordinance will be updated. If this measure does not pass, Berkeley will automatically revert to its original 1980 Rent Stabilization and Eviction for Good Cause Ordinance, with its “vacancy control” system, which allows only small annual increases in rent, even with tenant turnover. </p>
+      </div>
+      <div class="panel">
+        <h2> NOVEMBER 6, 2018 </h2>
+        <h1> REMEMBER TO VOTE </h1>
+        <!-- <h4> Find out your nearest polling place <a href="" target="_blank" style="color:#1960a8">here</a> </h4> -->
+      </div>
+  </div>
+   <script src="graph.js"></script>
+</body>

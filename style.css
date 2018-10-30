@@ -1,0 +1,55 @@
+body {
+    background-color: #f8f2e9;
+    margin:0;
+    position:fixed;
+    top:0;
+    right:0;
+    bottom:0;
+    left:0;
+    font-family: Helvetica, Arial;
+}
+#container {
+    position: relative;
+    padding-left: 28%;
+    z-index: 100;
+}
+#sticky { 
+    position: absolute; 
+    top: 0; 
+    right: 0; 
+    width: 100%; 
+    z-index: 50;
+}
+.panel {
+    position: relative;
+    width: 60%;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 25vh;
+    padding-bottom: 25vh;
+}
+.panel p {
+    background-color: #f8f2e9;
+    /*background-color: #f7ead7;*/
+    border-radius:3px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    box-shadow:0 0 1px 2px #d1b38c;
+}
+.panel:first-child {
+    padding-top: 35vh;
+}
+.panel:last-child {
+    padding-bottom: 45vh;
+}
+.axis line{
+  stroke: #404a5b;
+}
+.axis path{
+  stroke: #404a5b;
+}
+.axis text{
+  fill: #404a5b;
+} 
