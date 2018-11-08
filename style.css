@@ -6,7 +6,21 @@ body {
     right:0;
     bottom:0;
     left:0;
-    font-family: Helvetica, Arial;
+    font-family: BentonSans;
+}
+g {
+    display: block;
+    background-color: #d1b38c;
+    position: absolute; 
+    top: 0; 
+    right: 0; 
+    width: 100%; 
+    z-index: 50;
+}
+#graph {
+  width: 100%;
+  height: 100%;
+  position: absolute;
 }
 #container {
     position: relative;
@@ -37,12 +51,13 @@ body {
     padding-top: 10px;
     padding-bottom: 10px;
     box-shadow:0 0 1px 2px #d1b38c;
+    font-size: 20px;
 }
 .panel:first-child {
-    padding-top: 35vh;
+    padding-top: 25%;
 }
 .panel:last-child {
-    padding-bottom: 45vh;
+    padding-bottom: 35%;
 }
 .axis line{
   stroke: #404a5b;
@@ -53,3 +68,17 @@ body {
 .axis text{
   fill: #404a5b;
 } 
+.overlay {
+  fill: none;
+  pointer-events: all;
+}
+.focus circle {
+  fill: #F1F3F3;
+  stroke: #6F257F;
+  stroke-width: 5px;
+} 
+.hover-line {
+  stroke: #6F257F;
+  stroke-width: 2px;
+  stroke-dasharray: 3,3;
+}
