@@ -1,10 +1,12 @@
-var WIDTH = window.innerWidth;
-var HEIGHT = window.innerHeight;
-var margin = {top: 20, right: 20, bottom: 25, left: 40};
+var isMobile = window.innerWidth < 800 ? true : false;
 
-var body = d3.select('body').node()
-var container = d3.select('#container')
-var content = d3.select('#content')
+var WIDTH = isMobile ? 400 : 900;
+var HEIGHT = isMobile ? 500 : 600;
+var margin = {top: 20, right: 20, bottom: 25, left: 50};
+
+var body = d3.select('body').node();
+var container = d3.select('#container');
+var content = d3.select('#content');
     
 var SCROLL_LENGTH = content.node().getBoundingClientRect().height - HEIGHT;
 
@@ -34,17 +36,20 @@ d3.csv("data.csv", function(d) {
   xScale.domain(data.map(function(d) { return d.year; })).range([0, WIDTH - 2 * margin.right]);
   yScale.domain([0, 1800]).range([HEIGHT - 2 * margin.bottom, 0]);
 
+  var years = [1978, 1983, 1988, 1993, 1998, 2003, 2008, 2013];
+  var x = d3.axisBottom(xScale).tickValues(years);
+
   // x axis is 2 * margin.bottom above the bottom of window
   var xAxis = g.append("g")
-    .attr("transform", "translate(" + (0) + "," + (HEIGHT - 2 * margin.bottom) + ")")
+    .attr("transform", "translate(" + (-5) + "," + (HEIGHT - 2 * margin.bottom) + ")")
     .attr("class", "axis")
-    .call(d3.axisBottom(xScale).tickValues([1978, 1980, 1981, 1982, 1991, 1994, 1995, 2008, 2009, 2010, 2017]))
+    .call(x)
     .call(g => g.select(".domain").remove());
 
   var yAxis = g.append("g")
     .attr("transform", "translate(" + (0) + "," + (1.5 * margin.bottom) + ")")
     .attr("class", "axis")
-    .call(d3.axisLeft(yScale))
+    .call(d3.axisLeft(yScale).tickFormat((d, i) => (i == 9) ? d3.format("($,.2r")(d) : d3.format(",.2r")(d))) 
     .call(g => g.select(".domain").remove());
 
   var path = g.append("path")
@@ -78,7 +83,7 @@ d3.csv("data.csv", function(d) {
   //     });
 
   var pathScale = d3.scaleLinear()
-    .domain([6 * HEIGHT, SCROLL_LENGTH])
+    .domain([8*HEIGHT, SCROLL_LENGTH])
     .range([0, path.node().getTotalLength()])
     .clamp(true);
 
@@ -96,9 +101,13 @@ d3.csv("data.csv", function(d) {
     });
 
   var setDimensions = function() {
-    WIDTH = window.innerWidth;
-    HEIGHT = window.innerHeight;
+    isMobile = window.innerWidth < 850 ? true : false;
+
+    WIDTH = isMobile ? window.innerWidth : 900;
+    HEIGHT = isMobile ? 500 : 600;
+    
     SCROLL_LENGTH = content.node().getBoundingClientRect().height - HEIGHT;
+    console.log(SCROLL_LENGTH);
 
     svg
       .attr('width', WIDTH)
@@ -108,10 +117,10 @@ d3.csv("data.csv", function(d) {
     yScale.range([HEIGHT - 2 * margin.bottom, 0]);
 
     xAxis
-      .attr("transform", "translate(" + (0) + "," + (HEIGHT - 2 * margin.bottom) + ")")
+      .attr("transform", "translate(" + (-5) + "," + (HEIGHT - 2 * margin.bottom) + ")")
       .attr("class", "axis")
       // .call(d3.axisBottom(x).tickValues([1971, 1972, 1973, 1976, 1978, 1980, 1981, 1982, 1991, 1994, 1995, 2017]))
-      .call(d3.axisBottom(xScale).tickValues([1978, 1980, 1981, 1982, 1991, 1994, 1995, 2008, 2009, 2010, 2017]))
+      .call(x)
       .call(g => g.select(".domain").remove());
 
     yAxis
@@ -127,7 +136,7 @@ d3.csv("data.csv", function(d) {
     //   .attr("d", line2(data));
 
     pathScale
-      .domain([6 * HEIGHT, SCROLL_LENGTH])
+      .domain([8 * HEIGHT, SCROLL_LENGTH])
       .range([0, path.node().getTotalLength()]);
 
     // pathScale2
@@ -137,6 +146,7 @@ d3.csv("data.csv", function(d) {
     path
       .attr("d", line(data))
       .style("stroke-dasharray", function(d) {
+        console.log(d3.select(this));
         var l = d3.select(this).node().getTotalLength();
         return l + "px, " + l + "px";
       })
