@@ -44,8 +44,8 @@ g {
     margin: 0 auto;
     padding-left: 20px;
     padding-right: 20px;
-    padding-top: 25vh;
-    padding-bottom: 25vh;
+    padding-top: 20vh;
+    padding-bottom: 20vh;
 }
 .panel p {
     /*background-color: #f8f2e9;*/
@@ -66,10 +66,10 @@ g {
   /*opacity: 0.6;*/
 }
 .panel:first-child {
-    padding-top: 25%;
+    padding-top: 25vh;
 }
 .panel:last-child {
-    padding-bottom: 35%;
+    padding-bottom: 25vh;
 }
 .axis line{
   stroke: #404a5b;
@@ -84,17 +84,12 @@ g {
   fill: none;
   pointer-events: all;
 }
-.focus circle {
-  fill: #F1F3F3;
-  stroke: #6F257F;
-  stroke-width: 5px;
-} 
-.hover-line {
-  stroke: #6F257F;
-  stroke-width: 2px;
-  stroke-dasharray: 3,3;
+.square {
+  height: 800vh;
+  width: 100vw;
+  background-color: #f8f2e9;
+  position: static; 
 }
-
 
 /* Mobile styles */
 
