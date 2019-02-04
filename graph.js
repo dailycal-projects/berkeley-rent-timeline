@@ -1,13 +1,29 @@
-var isMobile = window.innerWidth < 800 ? true : false;
 
-var WIDTH = isMobile ? 400 : 900;
-var HEIGHT = isMobile ? 500 : 600;
+var WIDTH, HEIGHT;
+
+if (window.innerWidth < 380) {
+    WIDTH = 300;
+    HEIGHT = 500; 
+} else if (window.innerWidth < 450) {
+    WIDTH = 400;
+    HEIGHT = 500; 
+} else if (window.innerWidth < 800) {
+    WIDTH = 600;
+    HEIGHT = 500;
+} else {
+    WIDTH = 900;
+    HEIGHT = 600;
+}
+
+
 var margin = {top: 20, right: 20, bottom: 25, left: 50};
 
+/* selection.node() -- returns the first (non-null) element in this selection. */
 var body = d3.select('body').node();
 var container = d3.select('#container');
 var content = d3.select('#content');
     
+/* .getBoundingClientRect() -- returns the size of an element and its position relative to the viewport. */
 var SCROLL_LENGTH = content.node().getBoundingClientRect().height - HEIGHT;
 
 svg = d3.select("#sticky").append("svg")
@@ -17,7 +33,7 @@ svg = d3.select("#sticky").append("svg")
 var g = svg.append("g")
   .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-var xScale = d3.scaleBand().rangeRound([0, WIDTH - margin.right]).paddingInner(0.1);
+var xScale = d3.scaleBand().rangeRound([0, WIDTH - margin.left]).paddingInner(0.1);
 var yScale = d3.scaleLinear().rangeRound([HEIGHT - margin.bottom, -margin.bottom]);
 
 d3.csv("data.csv", function(d) {
@@ -29,17 +45,12 @@ d3.csv("data.csv", function(d) {
     .x(function(d) { return xScale(d.year); })
     .y(function(d) { return yScale(d.rent2); })
 
-  // var line2 = d3.line()
-  //   .x(function(d) { return x(d.year); })
-  //   .y(function(d) { return y(d.rent); })
-
   xScale.domain(data.map(function(d) { return d.year; })).range([0, WIDTH - 2 * margin.right]);
   yScale.domain([0, 1800]).range([HEIGHT - 2 * margin.bottom, 0]);
 
   var years = [1978, 1983, 1988, 1993, 1998, 2003, 2008, 2013];
   var x = d3.axisBottom(xScale).tickValues(years);
 
-  // x axis is 2 * margin.bottom above the bottom of window
   var xAxis = g.append("g")
     .attr("transform", "translate(" + (-5) + "," + (HEIGHT - 2 * margin.bottom) + ")")
     .attr("class", "axis")
@@ -47,17 +58,27 @@ d3.csv("data.csv", function(d) {
     .call(g => g.select(".domain").remove());
 
   var yAxis = g.append("g")
-    .attr("transform", "translate(" + (0) + "," + (1.5 * margin.bottom) + ")")
+    .attr("transform", "translate(" + (0.15 * margin.left) + "," + (1.5 * margin.bottom) + ")")
     .attr("class", "axis")
     .call(d3.axisLeft(yScale).tickFormat((d, i) => (i == 9) ? d3.format("($,.2r")(d) : d3.format(",.2r")(d))) 
     .call(g => g.select(".domain").remove());
 
+  var yLabel = g.append("text")
+    .attr("transform", "rotate(-90)")
+    .attr("y", -margin.left)
+    .attr("x", -(HEIGHT / 2))
+    .attr("dy", "1em")
+    .style("text-anchor", "middle")
+    .style("font-family", "BentonSans")
+    .text("Median Rent (in Dollars)"); 
+
   var path = g.append("path")
     .attr("d",line(data))
+    .attr("transform", "translate(" + 0 + "," + 2 * margin.top + ")")
     .attr("class","line")
     .style("fill", "none")
     .style("stroke-opacity", .8)
-    .style("stroke", "#e2aa61")
+    .style("stroke", "#c06014")
     .style("stroke-width", 4)
     .style("stroke-dasharray", function(d) {
       var l = d3.select(this).node().getTotalLength();
@@ -67,34 +88,16 @@ d3.csv("data.csv", function(d) {
       return d3.select(this).node().getTotalLength() + "px";
       });
 
-  // var path2 = g.append("path")
-  //   .attr("d",line2(data))
-  //   .attr("class","line")
-  //   .style("fill", "none")
-  //   .style("stroke-opacity", .8)
-  //   .style("stroke", "#6199e2")
-  //   .style("stroke-width", 4)
-  //   .style("stroke-dasharray", function(d) {
-  //     var l = d3.select(this).node().getTotalLength();
-  //     return l + "px, " + l + "px";
-  //     })
-  //   .style("stroke-dashoffset", function(d) {
-  //     return d3.select(this).node().getTotalLength() + "px";
-  //     });
-
   var pathScale = d3.scaleLinear()
-    .domain([8*HEIGHT, SCROLL_LENGTH])
+    .domain([6 * HEIGHT, SCROLL_LENGTH - HEIGHT])
     .range([0, path.node().getTotalLength()])
-    .clamp(true);
-
-  // var pathScale2 = d3.scaleLinear()
-  //   .domain([6 * HEIGHT, SCROLL_LENGTH])
-  //   .range([0, path2.node().getTotalLength()])
-  //   .clamp(true);    
+    .clamp(true);  
 
   var scrollTop = 0
   var newScrollTop = 0
 
+  /* Event handler that records scroll position. */
+  /* scrollTop -- a measurement of the distance from the element's top to its topmost visible content. */
   container
     .on("scroll.scroller", function() {
       newScrollTop = container.node().scrollTop
@@ -119,29 +122,26 @@ d3.csv("data.csv", function(d) {
     xAxis
       .attr("transform", "translate(" + (-5) + "," + (HEIGHT - 2 * margin.bottom) + ")")
       .attr("class", "axis")
-      // .call(d3.axisBottom(x).tickValues([1971, 1972, 1973, 1976, 1978, 1980, 1981, 1982, 1991, 1994, 1995, 2017]))
       .call(x)
       .call(g => g.select(".domain").remove());
 
     yAxis
-      .attr("transform", "translate(" + (0) + "," + (1.5 * margin.bottom) + ")")
+      .attr("transform", "translate(" + (0.15 * margin.left) + "," + (1.5 * margin.bottom) + ")")
       .attr("class", "axis")
       .call(d3.axisLeft(yScale))
       .call(g => g.select(".domain").remove());
 
-    path
-      .attr("d", line(data));
-
-    // path2
-    //   .attr("d", line2(data));
+    yLabel
+      .attr("transform", "rotate(-90)")
+      .attr("y", -margin.left)
+      .attr("x", -(HEIGHT / 2))
+      .attr("dy", "1em")
+      .style("text-anchor", "middle")
+      .text("Median Rent (in Dollars)");
 
     pathScale
-      .domain([8 * HEIGHT, SCROLL_LENGTH])
+      .domain([6 * HEIGHT, SCROLL_LENGTH - HEIGHT])
       .range([0, path.node().getTotalLength()]);
-
-    // pathScale2
-    //   .domain([0, SCROLL_LENGTH])
-    //   .range([0, path2.node().getTotalLength()]);
 
     path
       .attr("d", line(data))
@@ -153,33 +153,33 @@ d3.csv("data.csv", function(d) {
       .style("stroke-dashoffset", function(d) {
         return d3.select(this).node().getTotalLength() - pathScale(scrollTop) + "px";
       });
-
-    // path2
-    //   .attr("d", line2(data))
-    //   .style("stroke-dasharray", function(d) {
-    //     var l = d3.select(this).node().getTotalLength();
-    //     return l + "px, " + l + "px";
-    //   })
-    //   .style("stroke-dashoffset", function(d) {
-    //     return d3.select(this).node().getTotalLength() - pathScale2(scrollTop) + "px";
-    //   });
 }
 
+/* Checks (~60/sec) if newScrollTop is different from scrollTop. If different, update graphics accordingly. */
+/* window.requestAnimationFrame() -- tells the browser that you wish to perform an animation and requests
+that the browser call a specified function to update an animation before the next repaint. 
+The method takes a callback as an argument to be invoked before the repaint. */
 var render = function() {
   if (scrollTop !== newScrollTop) {
     scrollTop = newScrollTop
     
+    if (scrollTop > (5 * window.innerHeight)) {
+        // window.alert(scrollTop);
+        d3.select("svg")
+          .style("display", "block");
+    } else {
+      d3.select("svg")
+          .style("display", "none");
+    }
+
     path
       .style("stroke-dashoffset", function(d) {
         return (path.node().getTotalLength() - pathScale(scrollTop) + "px");
       });
-
-    // path2
-    //   .style("stroke-dashoffset", function(d) {
-    //     return path2.node().getTotalLength() - pathScale2(scrollTop) + "px";
-    //   });
   }
 
+  /* Your callback routine must itself call requestAnimationFrame()
+  if you want to animate another frame at the next repaint. */
   window.requestAnimationFrame(render)
 }
 

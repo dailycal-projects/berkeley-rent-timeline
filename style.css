@@ -1,29 +1,12 @@
 body {
-    background-color: #f8f2e9;
-    margin:0;
-    position:fixed;
-    top:0;
-    right:0;
-    bottom:0;
-    left:0;
+    background-color: #e2dace;
+    margin: 0;
+    padding: 0;
+    position: fixed;
     font-family: BentonSans;
 }
-g {
-    display: block;
-    background-color: #d1b38c;
-    position: absolute; 
-    top: 0; 
-    right: 0; 
-    width: 100%; 
-    z-index: 50;
-}
-#wrapper {
-  padding: 15px;
-}
-#graph {
-  width: 100%;
-  height: 100%;
-  position: absolute;
+svg {
+  display: none;
 }
 #container {
     position: relative;
@@ -47,49 +30,92 @@ g {
     padding-top: 20vh;
     padding-bottom: 20vh;
 }
-.panel p {
-    /*background-color: #f8f2e9;*/
-    background-color: #f7ead794; /*d4faff78*/
+#last {
+  padding-bottom: 100vh;
+}
+.panel .year {
+    text-align: center;
+    font-size: 20px;
+    margin-left: 75px;
+    margin-right: 75px;
+    padding-top: 20vh;
+}
+.panel .details {
+    background-color: #f5f2ee;
+    margin-left: 50px;
+    margin-right: 50px;
     border-radius:3px;
     padding-left: 10px;
     padding-right: 10px;
     padding-top: 10px;
     padding-bottom: 10px;
-    box-shadow:0 0 1px 2px #d1b38c;
-    font-size: 20px;
+    box-shadow:0 0 1px 2px #cfc2ae;
+    font-family: Georgia,Times,Times New Roman,serif;
+    font-size: 17px;
 }
-.panel:after {
-  content:'';
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  /*opacity: 0.6;*/
-}
-.panel:first-child {
-    padding-top: 25vh;
-}
-.panel:last-child {
-    padding-bottom: 25vh;
+.panel h4 {
+    margin-left: 50px;
+    margin-right: 50px;
 }
 .axis line{
-  stroke: #404a5b;
+  stroke: #0f1626;
 }
 .axis path{
-  stroke: #404a5b;
+  stroke: #0f1626;
 }
 .axis text{
-  fill: #404a5b;
+  fill: #0f1626;
 } 
 .overlay {
   fill: none;
   pointer-events: all;
 }
-.square {
-  height: 800vh;
+.heading {
+  height: 100vh;
   width: 100vw;
-  background-color: #f8f2e9;
-  position: static; 
+  background-color: #ced6e2;
+  position: relative; 
+  top: 0px;
+  left: 0px;
 }
+.heading #subtitle {
+  font-size: 30px;
+}
+.heading #details {
+  font-size: 15px;
+}
+.ending {
+  margin: 0 auto;
+  background-color: #ced6e2;
+  height: 100vh;
+  width: 100vw;
+  position: relative; 
+  top: 0px;
+  left: 0px;
+  padding-left: 20px;
+  padding-right: 20px;
+  /*padding-top: 20vh;*/
+  /*padding-bottom: 20vh;*/
+}
+.ending #subtitle {
+  font-size: 25px;
+}
+.ending #details {
+  font-size: 15px;
+  font-family: Georgia,Times,Times New Roman,serif
+}
+.nerd-box {
+  background: #f9f9f9;
+  max-width: 600px;
+  padding: 20px;
+  margin: 0 auto;
+  font-family: Lato, sans-serif;
+}
+.nerd-box p {
+  font-size: 14px;
+  margin-bottom: 0;
+}
+
 
 /* Mobile styles */
 
